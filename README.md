@@ -44,7 +44,9 @@ npm run test     # Vitest
 npm run build    # production build into frontend/dist
 ```
 
-Copy `.env.example` to `.env` and adjust values for local use. Never commit `.env`.
+Copy `.env.example` to `.env` (in the repo root) and adjust values for local use. Never commit `.env`.
+
+The frontend uses mock data by default, so it works without the backend. Set `VITE_USE_MOCKS=false` to call the real API at `VITE_API_BASE_URL`. In mock mode the login page lets you pick any of the six roles, and a "Dev" role switcher in the top bar changes role without signing out.
 
 ## Branch rules
 
