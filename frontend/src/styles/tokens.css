@@ -1,0 +1,220 @@
+/*
+  OMIS design tokens.
+  Every color, size and shadow in the app comes from these variables, so the
+  look can be changed in one place. Components never use raw hex values.
+
+  Theme selection:
+  - Light is the default.
+  - Dark follows the operating system unless the user picked a theme.
+  - <html data-theme="light|dark"> forces a theme (set by useTheme).
+*/
+
+:root {
+  /* ---------- Typography ---------- */
+  --font-sans:
+    'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace;
+
+  --text-xs: 0.75rem; /* 12px: captions, badges */
+  --text-sm: 0.8125rem; /* 13px: table cells, hints */
+  --text-md: 0.875rem; /* 14px: body, inputs, buttons */
+  --text-lg: 1rem; /* 16px: card titles */
+  --text-xl: 1.25rem; /* 20px: section titles */
+  --text-2xl: 1.625rem; /* 26px: page titles */
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --tracking-tight: -0.015em;
+  --tracking-wide: 0.04em;
+
+  /* ---------- Spacing (4px scale) ---------- */
+  --space-1: 0.25rem; /* 4 */
+  --space-2: 0.5rem; /* 8 */
+  --space-3: 0.75rem; /* 12 */
+  --space-4: 1rem; /* 16 */
+  --space-5: 1.25rem; /* 20 */
+  --space-6: 1.5rem; /* 24 */
+  --space-8: 2rem; /* 32 */
+  --space-10: 2.5rem; /* 40 */
+  --space-12: 3rem; /* 48 */
+
+  /* ---------- Radius ---------- */
+  --radius-sm: 6px; /* badges, small controls */
+  --radius-md: 8px; /* buttons, inputs */
+  --radius-lg: 12px; /* cards */
+  --radius-xl: 16px; /* modals */
+  --radius-full: 999px;
+
+  /* ---------- Layout ---------- */
+  --sidebar-width: 248px;
+  --topbar-height: 60px;
+  --content-max-width: 1200px;
+  --control-height: 38px;
+  --control-height-sm: 30px;
+
+  /* ---------- Motion ---------- */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-normal: 200ms;
+
+  /* ---------- Layers ---------- */
+  --z-sidebar: 20;
+  --z-topbar: 30;
+  --z-modal: 50;
+  --z-toast: 60;
+
+  /* ---------- Light theme colors ---------- */
+  color-scheme: light;
+
+  /* Brand: a deep indigo-blue with a teal accent for "intelligence" highlights */
+  --color-primary: #3346d3;
+  --color-primary-hover: #2836b0;
+  --color-primary-soft: #eceffe;
+  --color-primary-contrast: #ffffff;
+  --color-accent: #0e9f8e;
+  --color-accent-soft: #e3f6f3;
+
+  /* Surfaces: a slightly cool off-white page with white cards */
+  --color-bg: #f5f6fa;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f0f2f7;
+  --color-surface-raised: #ffffff;
+  --color-sidebar: #10142b;
+  --color-sidebar-text: #aab1cf;
+  --color-sidebar-text-active: #ffffff;
+  --color-sidebar-item-active: rgba(255, 255, 255, 0.08);
+
+  /* Text */
+  --color-text: #161a2e;
+  --color-text-muted: #5b6280;
+  --color-text-subtle: #8a90aa;
+
+  /* Borders and focus */
+  --color-border: #e2e5ee;
+  --color-border-strong: #c9cedd;
+  --color-focus-ring: rgba(51, 70, 211, 0.35);
+
+  /* Status colors (text on soft background) */
+  --color-success: #127a4a;
+  --color-success-soft: #e2f5eb;
+  --color-warning: #9a5b00;
+  --color-warning-soft: #fdf1dc;
+  --color-danger: #c42b3b;
+  --color-danger-hover: #a52230;
+  --color-danger-soft: #fde8ea;
+  --color-info: #1d64c2;
+  --color-info-soft: #e4effc;
+  --color-neutral: #4b5270;
+  --color-neutral-soft: #eceef4;
+
+  --color-overlay: rgba(12, 15, 32, 0.45);
+
+  /* ---------- Shadows ---------- */
+  --shadow-xs: 0 1px 2px rgba(16, 20, 43, 0.06);
+  --shadow-sm: 0 1px 3px rgba(16, 20, 43, 0.08), 0 1px 2px rgba(16, 20, 43, 0.04);
+  --shadow-md: 0 6px 16px -4px rgba(16, 20, 43, 0.12), 0 2px 4px rgba(16, 20, 43, 0.05);
+  --shadow-lg: 0 24px 48px -12px rgba(16, 20, 43, 0.25);
+}
+
+/* Dark theme values, shared by the two selectors below. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --color-primary: #7b8cff;
+    --color-primary-hover: #95a3ff;
+    --color-primary-soft: rgba(123, 140, 255, 0.14);
+    --color-primary-contrast: #0b0e1f;
+    --color-accent: #3cc9b6;
+    --color-accent-soft: rgba(60, 201, 182, 0.14);
+
+    --color-bg: #0b0e1a;
+    --color-surface: #141828;
+    --color-surface-muted: #1b2034;
+    --color-surface-raised: #1d2238;
+    --color-sidebar: #080a14;
+    --color-sidebar-text: #8d94b3;
+    --color-sidebar-text-active: #ffffff;
+    --color-sidebar-item-active: rgba(255, 255, 255, 0.07);
+
+    --color-text: #e8eaf4;
+    --color-text-muted: #a2a8c3;
+    --color-text-subtle: #727996;
+
+    --color-border: #262c44;
+    --color-border-strong: #353c5a;
+    --color-focus-ring: rgba(123, 140, 255, 0.45);
+
+    --color-success: #4cd39a;
+    --color-success-soft: rgba(76, 211, 154, 0.14);
+    --color-warning: #f2b252;
+    --color-warning-soft: rgba(242, 178, 82, 0.14);
+    --color-danger: #ff6b7a;
+    --color-danger-hover: #ff8592;
+    --color-danger-soft: rgba(255, 107, 122, 0.14);
+    --color-info: #6aa8ff;
+    --color-info-soft: rgba(106, 168, 255, 0.14);
+    --color-neutral: #b3b9d3;
+    --color-neutral-soft: rgba(179, 185, 211, 0.12);
+
+    --color-overlay: rgba(0, 0, 0, 0.6);
+
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45);
+    --shadow-md: 0 8px 20px -6px rgba(0, 0, 0, 0.55);
+    --shadow-lg: 0 24px 56px -12px rgba(0, 0, 0, 0.7);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-primary: #7b8cff;
+  --color-primary-hover: #95a3ff;
+  --color-primary-soft: rgba(123, 140, 255, 0.14);
+  --color-primary-contrast: #0b0e1f;
+  --color-accent: #3cc9b6;
+  --color-accent-soft: rgba(60, 201, 182, 0.14);
+
+  --color-bg: #0b0e1a;
+  --color-surface: #141828;
+  --color-surface-muted: #1b2034;
+  --color-surface-raised: #1d2238;
+  --color-sidebar: #080a14;
+  --color-sidebar-text: #8d94b3;
+  --color-sidebar-text-active: #ffffff;
+  --color-sidebar-item-active: rgba(255, 255, 255, 0.07);
+
+  --color-text: #e8eaf4;
+  --color-text-muted: #a2a8c3;
+  --color-text-subtle: #727996;
+
+  --color-border: #262c44;
+  --color-border-strong: #353c5a;
+  --color-focus-ring: rgba(123, 140, 255, 0.45);
+
+  --color-success: #4cd39a;
+  --color-success-soft: rgba(76, 211, 154, 0.14);
+  --color-warning: #f2b252;
+  --color-warning-soft: rgba(242, 178, 82, 0.14);
+  --color-danger: #ff6b7a;
+  --color-danger-hover: #ff8592;
+  --color-danger-soft: rgba(255, 107, 122, 0.14);
+  --color-info: #6aa8ff;
+  --color-info-soft: rgba(106, 168, 255, 0.14);
+  --color-neutral: #b3b9d3;
+  --color-neutral-soft: rgba(179, 185, 211, 0.12);
+
+  --color-overlay: rgba(0, 0, 0, 0.6);
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 8px 20px -6px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 24px 56px -12px rgba(0, 0, 0, 0.7);
+}
