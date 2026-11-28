@@ -20,25 +20,33 @@ function systemTheme(): Theme {
   return prefersDark ? 'dark' : 'light'
 }
 
+function saveTheme(theme: Theme) {
+  try {
+    localStorage.setItem(STORAGE_KEY, theme)
+  } catch {
+    // Storage can be blocked (private mode). The theme still applies for this visit.
+  }
+}
+
 /**
  * Current color theme and a toggle.
- * The choice is saved in localStorage and applied as <html data-theme="...">,
- * which switches the CSS variables in tokens.css.
+ * Until the user toggles, the operating system setting is used. After a toggle
+ * the choice is saved in localStorage. The theme is applied as
+ * <html data-theme="...">, which switches the CSS variables in tokens.css.
  */
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => readSavedTheme() ?? systemTheme())
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
-    try {
-      localStorage.setItem(STORAGE_KEY, theme)
-    } catch {
-      // Storage can be blocked (private mode). The theme still applies for this visit.
-    }
   }, [theme])
 
   const toggleTheme = useCallback(() => {
-    setTheme((current) => (current === 'dark' ? 'light' : 'dark'))
+    setTheme((current) => {
+      const next = current === 'dark' ? 'light' : 'dark'
+      saveTheme(next)
+      return next
+    })
   }, [])
 
   return { theme, toggleTheme }
