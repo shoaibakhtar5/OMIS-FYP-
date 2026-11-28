@@ -1,0 +1,9 @@
+/* Global styles. Design tokens from the wireframes will be added here in A-01. */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
