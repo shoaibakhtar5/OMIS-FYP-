@@ -1,0 +1,24 @@
+# Dependencies and builds
+node_modules/
+dist/
+coverage/
+
+# Environment files (commit .env.example only)
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+.venv/
+
+# Logs
+*.log
+
+# Media produced by the app
+uploads/
+recordings/
+
+# Local editor / tool settings
+.claude/
+.DS_Store
